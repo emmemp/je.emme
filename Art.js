@@ -1,9 +1,17 @@
-import * as tf from '@tensorflow/tfjs';
-import * as tmImage from '@teachablemachine/image';
+const tmImage = window.tmImage;
+const tf = window.tf;
 
-// URLs del modelo y metadatos
-const modelURL = "https://storage.googleapis.com/model-art/Modelo/model.json";
-const metadataURL = "https://storage.googleapis.com/model-art/Modelo/metadata.json";
+async function loadModel() {
+    const modelURL = "https://storage.googleapis.com/model-art/Modelo/model.json";
+    const metadataURL = "https://storage.googleapis.com/model-art/Modelo/metadata.json";
+
+    const model = await tmImage.load(modelURL, metadataURL);
+    console.log("Modelo cargado correctamente.");
+}
+
+window.onload = () => {
+    loadModel();
+};
 
 let model, webcam, maxPredictions;
 
